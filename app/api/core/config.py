@@ -2,9 +2,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    app_title: str = '-'
-    description: str | None = None
-    database_url: str | None = None
+    app_title: str = "Tickr"
+    description: str
+    database_url: str
 
     model_config = SettingsConfigDict(env_file='.env')
 
