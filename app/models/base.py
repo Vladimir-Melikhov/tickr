@@ -1,0 +1,19 @@
+import uuid
+from sqlalchemy import BigInteger, Uuid
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class MainMixin:
+    @declared_attr
+    def __tablename__(cls) -> str:
+        return cls.__name__.lower()
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+
+    public_id: Mapped[uuid.UUID] = mapped_column(
+        Uuid(as_uuid=True), unique=True, index=True, default=uuid.uuid4
+    )
